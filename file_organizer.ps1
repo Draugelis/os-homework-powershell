@@ -19,7 +19,7 @@ Specifies whether to ignore duplicate files during organization process.
 OrganizeFiles only accepts inputs using parameters
 
 .EXAMPLE
-C:\PS> OrganizeFiles . 
+C:\PS> OrganizeFiles
 
 .EXAMPLE
 C:\PS> OrganizeFiles -Only Images
