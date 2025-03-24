@@ -82,7 +82,7 @@ function OrganizeFiles {
         }
     }
 
-    Write-Host "[DEBUG] Target extensions: $($TargetExtensions)"
+    Write-Host "Target extensions: $($TargetExtensions)"
 
     # Get files with extensions and generate hashes
     $Files = Get-ChildItem -File | 
@@ -106,13 +106,13 @@ function OrganizeFiles {
             Expression = { (Get-FileHash $_.FullName).Hash }
         }
 
-    Write-Host "[DEBUG] Files: $($Files)"
+    # Write-Host "[DEBUG] Files: $($Files)"
 
     # Handle duplicates if IgnoreDuplicates flag is not set
     if (-not $IgnoreDuplicates) {
         Write-Host "Detecting duplicates..."
         $Duplicates = $Files | Group-Object Hash | Where-Object $_.Count -gt 1
-        Write-Host "[DEBUG] Duplicates: $($Duplicates)"
+        # Write-Host "[DEBUG] Duplicates: $($Duplicates)"
         foreach ($group in $Duplicates) {
             if ($group.Count -le 1) {
                 continue
@@ -154,7 +154,7 @@ function OrganizeFiles {
     Write-Host "Moving files..."
     $Files | ForEach-Object {
         $Destination = Join-Path (Split-Path -Parent $_.FullName) $_.Category
-        Write-Host "[DEBUG] Destination: $($Destination)"
+        # Write-Host "[DEBUG] Destination: $($Destination)"
 
         # Create destination folder if doesn't exist
         if (-not (Test-Path $Destination)) {
