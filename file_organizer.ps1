@@ -156,16 +156,16 @@ function OrganizeFiles {
 
     # Move the files to subfolders
     Write-Host "Moving files..."
-    for ($file in $Files) {
-        $Destination = Join-Path (Split-Path -Parent $file.FullName) $file.Category
+    $Files | ForEach-Object {
+        $Destination = Join-Path (Split-Path -Parent $_.FullName) $_.Category
 
         # Create destination folder if doesn't exist
         if (-not (Test-Path $Destination)) {
             New-Item -ItemType Directory -Path $Destination | Out-Null  # Out-Null is to supress New-Item output
         }
 
-        Move-Item -Path $file.FullName -Destination $Destination
-        Write-Host "Moved $($file.Name) to $($file.Category) subfolder."
+        Move-Item -Path $_.FullName -Destination $Destination
+        Write-Host "Moved $($_.Name) to $($_.Category) subfolder."
     }
 
     Write-Host "Finished moving files."
