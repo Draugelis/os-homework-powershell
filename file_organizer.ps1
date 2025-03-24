@@ -111,7 +111,7 @@ function OrganizeFiles {
     # Handle duplicates if IgnoreDuplicates flag is not set
     if (-not $IgnoreDuplicates) {
         Write-Host "Detecting duplicates..."
-        $Duplicates = $Files | Group-Object Hash | Where-Object $_.Count -gt 1
+        $Duplicates = $Files | Group-Object Hash | Where-Object Count -gt 1
         # Write-Host "[DEBUG] Duplicates: $($Duplicates)"
         foreach ($group in $Duplicates) {
             if ($group.Count -le 1) {
