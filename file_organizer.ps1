@@ -53,10 +53,10 @@ function OrganizeFiles {
     
     # Pre-defined file categories
     $FileCategories = @{
-        "Images"    = @("jpg", "png", "gif", "gif")
-        "Documents" = @("pdf", "docx", "xlsx", "pptx")
-        "Videos"    = @("mp4", "mkv", "avi", "mov")
-        "Audio"     = @("mp3", "wav", "flac", "ogg")
+        "Images"    = @(".jpg", ".png", ".gif", ".bmp")
+        "Documents" = @(".pdf", ".docx", ".xlsx", ".pptx")
+        "Videos"    = @(".mp4", ".mkv", ".avi", ".mov")
+        "Audio"     = @(".mp3", ".wav", ".flac", ".ogg")
     }
 
     # Generate list of extensions that will be targeted
