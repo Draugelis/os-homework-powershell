@@ -35,17 +35,21 @@ function OrganizeFiles {
     [CmdletBinding()]
 
     param(
-        [parameter(Mandatory = $False, ParameterSetName = "OnlySet")]
+        [parameter(Mandatory = $False)]
         [ValidateSet("Images", "Documents", "Videos", "Audio")]
         [String[]]$Only,
 
-        [parameter(Mandatory = $False, ParameterSetName = "ExceptSet")]
+        [parameter(Mandatory = $False)]
         [ValidateSet("Images", "Documents", "Videos", "Audio")]
         [String[]]$Except,
 
         [switch]$IgnoreDuplicates
     )
 
+    # Ensure that only -Only or -Except is set but not both
+    if ($PSBoundParameters.ContainsKey('Only') -and $PSBoundParameters.ContainsKey('Except')) {
+        throw "You can use either -Only or -Except parameter."
+    }
     
     # Pre-defined file categories
     $FileCategories = @{
