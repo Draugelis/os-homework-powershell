@@ -3,51 +3,38 @@
 Organize files in a folder
 
 .DESCRIPTION
-Organizes files in a provided folder
-based on their file extensions and 
-detects duplicate files based on 
-file hashes.
-
-.PARAMETER FolderPath
-Specifies the folder path where
-the files shall be organized.
+Organizes files in a provided folder based on their file extensions and 
+detects duplicate files based on file hashes.
 
 .PARAMETER Only
-Specifies file categories that 
-shall be limited for organization.
+Specifies file categories that shall be limited for organization.
 
 .PARAMETER Except
-Specifies file categories that
-shall be excluded from organization
+Specifies file categories that shall be excluded from organization
 
 .PARAMETER IgnoreDuplicates
-Specifies whether to ignore duplicate
-files during organization process.
+Specifies whether to ignore duplicate files during organization process.
 
 .INPUTS
-System.String. OrganizeFiles can accept
-a string value to determine FolderPath parameter.
+OrganizeFiles only accepts inputs using parameters
 
 .EXAMPLE
-C:\PS> OrganizeFiles -FolderPath . 
+C:\PS> OrganizeFiles . 
 
 .EXAMPLE
-C:\PS> OrganizeFiles -FolderPath . -Only Images
+C:\PS> OrganizeFiles -Only Images
 
 .EXAMPLE
-C:\PS> OrganizeFiles -FolderPath . -Except Documents
+C:\PS> OrganizeFiles -Except Documents
 
 .EXAMPLE
-C:\PS> OrganizeFiles -FolderPath . -Only Videos -IgnoreDuplicates
+C:\PS> OrganizeFiles -Only Videos -IgnoreDuplicates
 
 #>
 function OrganizeFiles {
     [CmdletBinding()]
 
     param(
-        [parameter(Mandatory = $True,ValueFromPipeline = $True)]
-        [String]$FolderPath,
-
         [parameter(Mandatory = $False, ParameterSetName = "OnlySet")]
         [ValidateSet("Images", "Documents", "Videos", "Audio")]
         [String[]]$Only,
