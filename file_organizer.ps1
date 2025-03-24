@@ -42,15 +42,6 @@ C:\PS> OrganizeFiles -FolderPath . -Only Videos -IgnoreDuplicates
 
 #>
 function OrganizeFiles {
-    # Pre-defined file categories
-    $FileCategories = @{
-        "Images"    = @("jpg", "png", "gif", "gif")
-        "Documents" = @("pdf", "docx", "xlsx", "pptx")
-        "Videos"    = @("mp4", "mkv", "avi", "mov")
-        "Audio"     = @("mp3", "wav", "flac", "ogg")
-    }
-
-    # Advanced function section
     [CmdletBinding()]
 
     param(
@@ -58,17 +49,24 @@ function OrganizeFiles {
         [String]$FolderPath,
 
         [parameter(Mandatory = $False, ParameterSetName = "OnlySet")]
-        [ValidateSet([string[]]($FileCategories.Keys))]
+        [ValidateSet("Images", "Documents", "Videos", "Audio")]
         [String[]]$Only,
 
         [parameter(Mandatory = $False, ParameterSetName = "ExceptSet")]
-        [ValidateSet([string[]]($FileCategories.Keys))]
+        [ValidateSet("Images", "Documents", "Videos", "Audio")]
         [String[]]$Except,
 
         [switch]$IgnoreDuplicates
     )
 
-    # Execution section
+    
+    # Pre-defined file categories
+    $FileCategories = @{
+        "Images"    = @("jpg", "png", "gif", "gif")
+        "Documents" = @("pdf", "docx", "xlsx", "pptx")
+        "Videos"    = @("mp4", "mkv", "avi", "mov")
+        "Audio"     = @("mp3", "wav", "flac", "ogg")
+    }
 
     # Generate list of extensions that will be targeted
     $TargetExtensions = @()
