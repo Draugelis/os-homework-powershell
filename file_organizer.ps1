@@ -75,7 +75,7 @@ function OrganizeFiles {
     }
     else {
         # Except param is set
-        foreach ($category in $FileCategories.Keys) {\
+        foreach ($category in $FileCategories.Keys) {
             if ($category -notin $Except) {
                 $TargetExtensions += $FileCategories[$category]
             }
